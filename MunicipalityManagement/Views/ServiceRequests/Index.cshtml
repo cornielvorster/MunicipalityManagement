@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MunicipalityManagement.Models.ServiceRequest>
+
+@{
+    ViewData["Title"] = "Service Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h1>Service Request</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+@* Table for Service requests *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ServiceType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Citizen)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Citizen.FullName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.RequestID" class="btn btn-info">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.RequestID" class="btn btn-success">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.RequestID" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
